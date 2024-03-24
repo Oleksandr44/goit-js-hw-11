@@ -31,6 +31,7 @@ function sendForm(evt) {
     
     const input = evt.target.elements.search.value.trim();
     if (input !== '') {
+        showLoader(); // Викликати функцію showLoader перед запитом до API Pixabay
         fetchPhotoFromPixabay()
             .then((photos) => {
                 renderPhotos(photos.hits);
