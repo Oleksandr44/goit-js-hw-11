@@ -31,33 +31,30 @@ function sendForm(evt) {
     
     const input = evt.target.elements.search.value.trim();
     if (input !== '') {
-        window.onload = () => {
-            fetchPhotoFromPixabay()
-                .then((photos) => {
-                    renderPhotos(photos.hits);
-                    hideLoader();
-                })
-                .catch((error) => {
-                    console.log(error);
-                    hideLoader();
-                    iziToast.error({
-                        message: 'Sorry, an error occurred while loading. Please try again!',
-                        theme: 'dark',
-                        progressBarColor: '#FFFFFF',
-                        color: '#EF4040',
-                        position: 'topRight',
-                    });
+        fetchPhotoFromPixabay()
+            .then((photos) => {
+                renderPhotos(photos.hits);
+                hideLoader();
+            })
+            .catch((error) => {
+                console.log(error);
+                hideLoader();
+                iziToast.error({
+                    message: 'Sorry, an error occurred while loading. Please try again!',
+                    theme: 'dark',
+                    progressBarColor: '#FFFFFF',
+                    color: '#EF4040',
+                    position: 'topRight',
                 });
-        }
-        window.onload();
-            form.reset();
-        } else {
-            iziToast.show({
-                message: 'Please complete the field!',
-                theme: 'dark',
-                progressBarColor: '#FFFFFF',
-                color: '#EF4040',
-                position: 'topRight',
             });
-        }
+        form.reset();
+    } else {
+        iziToast.show({
+            message: 'Please complete the field!',
+            theme: 'dark',
+            progressBarColor: '#FFFFFF',
+            color: '#EF4040',
+            position: 'topRight',
+        });
     }
+}
